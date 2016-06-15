@@ -45,3 +45,5 @@ Temporary Items
 bin
 .classpath
 .project
+.idea
+LeetCodeOJ.iml
