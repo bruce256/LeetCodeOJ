@@ -4,6 +4,7 @@ package march;
  * Created by Administrator on 2016/6/21.
  */
 public class BitwiseANDofNumbersRange {
+
 	public static void main(String[] args) {
 		BitwiseANDofNumbersRange br = new BitwiseANDofNumbersRange();
 		System.out.println(br.rangeBitwiseAnd(5, 7));
