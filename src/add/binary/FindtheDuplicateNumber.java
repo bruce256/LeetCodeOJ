@@ -9,11 +9,10 @@ package add.binary;
 public class FindtheDuplicateNumber {
 
 	public int findDuplicate(int[] nums) {
-		int n = nums.length - 1;
-		int sum = n * (n + 1) / 2;
-		for (int i = 0; i < nums.length; i++) {
-			sum -= nums[i];
-		}
-		return -sum;
+		for (int i = 0; i < nums.length; i++)
+			for (int j = i + 1; j < nums.length; j++) {
+				if (nums[i] == nums[j]) return nums[i];
+			}
+		return 0;
 	}
 }
