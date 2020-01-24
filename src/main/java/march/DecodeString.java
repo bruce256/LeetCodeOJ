@@ -73,12 +73,74 @@ public class DecodeString {
 		return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 	}
 	
+	
+	private String dfs(String s, int pos, boolean[] visited) {
+		int num = 0;
+		while (s.charAt(pos) != '[') {
+			num = num * 10 + (s.charAt(pos) - '0');
+			visited[pos] = true;
+			pos++;
+		}
+		visited[pos] = true;
+		pos++;
+		
+		StringBuilder sb = new StringBuilder();
+		while(!visited[pos]) {
+			char c = s.charAt(pos);
+			visited[pos] = true;
+			if (c >= '0' && c <= '9') {
+				sb.append(dfs(s, pos, visited)).toString();
+			} else if (isChar(c)) {
+				sb.append(c);
+			} else if (c == ']') {
+				break;
+			}
+			pos++;
+		}
+		
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < num; i++) {
+			result.append(sb.toString());
+		}
+		return result.toString();
+	}
+	
+	public String decodeString2(String s) {
+		char          c;
+		StringBuilder sb      = new StringBuilder();
+		boolean[]     visited = new boolean[s.length()];
+		for (int i = 0; i < s.length(); i++) {
+			c = s.charAt(i);
+			if (c <= '9' && c >= '0') {
+				sb.append(dfs(s, i, visited));
+				for (int j = 0; j < visited.length; j++) {
+					if (visited[j]) {
+						i = j;
+					}
+				}
+			} else {
+				sb.append(c);
+			}
+		}
+		
+		return sb.toString();
+	}
+	
 	public static void main(String[] args) {
 		DecodeString ds = new DecodeString();
 		//System.out.println(ds.decodeString("3[a]2[bc]"));
-		System.out.println(ds.decodeString("2[2[y]pq4[2[jk]e1[f]]]ef"));
-		System.out.println(ds.decodeString("3[a]2[b4[F]c]"));
-		System.out.println(ds.decodeString("3[a10[c]]"));
-		System.out.println(ds.decodeString("2[abc]3[cd]ef"));
+//		System.out.println(ds.decodeString("2[2[y]pq4[2[jk]e1[f]]]ef"));
+//		System.out.println(ds.decodeString("3[a]2[b4[F]c]"));
+//		System.out.println(ds.decodeString("3[a10[c]]"));
+//		System.out.println(ds.decodeString("2[abc]3[cd]ef"));
+		
+		
+//		System.out.println(ds.decodeString2("3[a]2[bc]"));
+//		System.out.println(ds.decodeString2("2[2[y]pq4[2[jk]e1[f]]]ef"));
+//		System.out.println(ds.decodeString2("3[a]2[b4[F]c]"));
+		System.out.println(ds.decodeString2("3[a10[c]]"));
+		System.out.println(ds.decodeString2("2[abc]3[cd]ef"));
+		
+		
 	}
 }
