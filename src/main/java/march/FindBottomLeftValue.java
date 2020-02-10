@@ -1,5 +1,6 @@
 package march;
 
+import java.io.PipedReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -26,5 +27,28 @@ public class FindBottomLeftValue {
 		}
 		
 		return bl;
+	}
+	
+	int maxLevel = 0;
+	int bl;
+	
+	public int findBottomLeftValue1(TreeNode root) {
+		bl = root.val;
+		maxLevel = 0;
+		dfs(root, 1);
+		return bl;
+	}
+	
+	private void dfs(TreeNode root, int level) {
+		if (root == null) return;
+		
+		if (level > maxLevel && (root.left != null || root.right != null)) {
+			maxLevel = level;
+			if (root.left != null) bl = root.left.val;
+			else bl = root.right.val;
+		}
+		
+		dfs(root.left, level + 1);
+		dfs(root.right, level + 1);
 	}
 }
