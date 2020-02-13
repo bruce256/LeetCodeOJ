@@ -52,7 +52,7 @@ public class Preorder {
 	}
 	
 	private void postRecursive(TreeNode root, List<Integer> list) {
-		if(root == null) return ;
+		if (root == null) return;
 		
 		postRecursive(root.left, list);
 		postRecursive(root.right, list);
@@ -60,4 +60,26 @@ public class Preorder {
 		list.add(root.val);
 	}
 	
+	
+	int mp = 0;
+	
+	public int maxDepth(Node root) {
+		mp = 0;
+		if (root == null) return 0;
+		recursive(root, 1);
+		return mp;
+	}
+	
+	private void recursive(Node root, int level) {
+		
+		if (root == null) {
+			return;
+		}
+		
+		mp = Math.max(mp, level);
+		
+		if (root == null || root.children.isEmpty()) return;
+		
+		for (int i = 0; i < root.children.size(); i++) recursive(root.children.get(i), level + 1);
+	}
 }
