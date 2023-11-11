@@ -48,3 +48,4 @@ bin
 .idea
 LeetCodeOJ.iml
 *.iml
+out
