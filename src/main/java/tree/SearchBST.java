@@ -8,19 +8,27 @@ package tree;
  **/
 public class SearchBST {
 	
-	TreeNode result = null;
+	
+	public TreeNode searchBST1(TreeNode root, int val) {
+		while (root != null) {
+			if (val == root.val) return root;
+			if (val > root.val) {
+				root = root.right;
+			} else {
+				root = root.left;
+			}
+		}
+		
+		return null;
+	}
 	
 	public TreeNode searchBST(TreeNode root, int val) {
-		result = null;
-		dfs(root, val);
-		return result;
+		if (root == null) return null;
+		if (root.val == val) return root;
+		
+		if (val > root.val) return searchBST(root.right, val);
+		else return searchBST(root.left, val);
 	}
 	
-	public void dfs(TreeNode root, int target) {
-		if (root == null) return;
-		
-		dfs(root.left, target);
-		if (root.val == target) result = root;
-		dfs(root.right, target);
-	}
+	
 }
