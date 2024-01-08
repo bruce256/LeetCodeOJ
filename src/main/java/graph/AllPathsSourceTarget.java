@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * https://leetcode.cn/problems/all-paths-from-source-to-target/description/
@@ -13,7 +14,13 @@ import java.util.List;
  **/
 public class AllPathsSourceTarget {
 	
-	public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+	/**
+	 * bfs
+	 *
+	 * @param graph
+	 * @return
+	 */
+	public List<List<Integer>> allPathsSourceTarget1(int[][] graph) {
 		int                  num    = graph.length;
 		List<List<Integer>>  result = new ArrayList<>();
 		Deque<List<Integer>> queue  = new ArrayDeque<>();
@@ -37,6 +44,29 @@ public class AllPathsSourceTarget {
 		}
 		
 		return result;
+	}
+	
+	public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+		List<List<Integer>> result = new ArrayList<>();
+		Stack<Integer>      path   = new Stack<>();
+		path.add(0);
+		dfs(graph, result, path);
+		return result;
+	}
+	
+	private void dfs(int[][] graph, List<List<Integer>> result, Stack<Integer> path) {
+		Integer last = path.get(path.size() - 1);
+		if (last == (graph.length - 1)) {
+			ArrayList<Integer> dest = new ArrayList<>(path.size());
+			dest.addAll(path);
+			result.add(dest);
+		}
+		
+		for (int i : graph[last]) {
+			path.add(i);
+			dfs(graph, result, path);
+			path.pop();
+		}
 	}
 	
 	public static void main(String[] args) {
