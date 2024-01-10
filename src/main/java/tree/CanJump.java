@@ -4,6 +4,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
+ * https://leetcode.cn/problems/jump-game/description/
+ *
  * @author LvSheng
  * @date 2023/10/15
  **/
@@ -26,17 +28,25 @@ public class CanJump {
 	 * @return
 	 */
 	public boolean bfs(int[] nums) {
-		Deque<Integer> deque  = new ArrayDeque();
-		int            target = nums.length - 1;
-		int            index  = 0;
+		if (nums.length == 1) return true;
+		Deque<Integer> deque   = new ArrayDeque();
+		int            target  = nums.length - 1;
+		int            index   = 0;
+		boolean[]      visited = new boolean[nums.length];
 		deque.add(0);
+		visited[0] = true;
 		
 		while (!deque.isEmpty()) {
 			index = deque.poll();
-			if (index > target) return true;
-			if (index + nums[index] >= target) return true;
 			for (int i = nums[index]; i >= 1; i--) {
-				deque.add(index + i);
+				int e = index + i;
+				if (e >= target) {
+					return true;
+				}
+				if (!visited[e]) {
+					deque.add(e);
+					visited[e] = true;
+				}
 			}
 			
 		}
