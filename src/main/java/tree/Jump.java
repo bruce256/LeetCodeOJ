@@ -18,22 +18,29 @@ public class Jump {
 	 * @return
 	 */
 	public int jump(int[] nums) {
-		Deque<Short> deque  = new ArrayDeque();
-		int            target = nums.length - 1;
-		int            index  = 0;
+		if (nums.length == 1) return 0;
+		Deque<Short> deque   = new ArrayDeque();
+		int          target  = nums.length - 1;
+		int          index   = 0;
+		boolean[]    visited = new boolean[nums.length];
 		deque.add((short) 0);
+		visited[0] = true;
 		int level = 0;
 		while (!deque.isEmpty()) {
 			int size = deque.size();
+			level++;
 			for (int j = 0; j < size; j++) {
 				index = deque.poll();
-				if (index >= target) return level;
 				
 				for (int i = nums[index]; i >= 1; i--) {
-					deque.add((short) (index + i));
+					int newPos = index + i;
+					if (newPos >= target) return level;
+					if (!visited[newPos]) {
+						deque.add((short) newPos);
+						visited[newPos] = true;
+					}
 				}
 			}
-			level++;
 		}
 		
 		return level;
