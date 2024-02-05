@@ -2,7 +2,6 @@ package march;
 
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -17,55 +16,77 @@ import java.util.TreeMap;
 public class LRUCache {
 	
 	// 队首是最久没有使用的
-	LinkedList<Integer> list;
+//	LinkedList<Integer>      list;
+	// 头指针
+	LinkedItem head;
+	LinkedItem tail;
+	
 	// 用于检查是否存在及 O(1) 获取元素
-	Map<Integer, Item>  map;
+	Map<Integer, LinkedItem> map;
 	
 	int capacity;
 	
 	public LRUCache(int capacity) {
-		list = new LinkedList<>();
-		map  = new HashMap<>(capacity);
+		head          = new LinkedItem();
+		tail          = new LinkedItem();
+		head.next     = tail;
+		tail.previous = head;
+		
+		map = new HashMap<>(capacity);
 		
 		this.capacity = capacity;
 	}
 	
 	public int get(int key) {
-		Item item = map.get(key);
+		LinkedItem item = map.get(key);
 		if (item == null) {
 			return -1;
 		}
 		
-		list.remove((Integer) key);
-		list.add(key);
+		item.remove();
+		tailAdd(item);
 		
 		return item.getValue();
+	}
+	
+	private void tailAdd(LinkedItem item) {
+		tail.previous.next = item;
+		item.previous      = tail.previous;
+		
+		item.next     = tail;
+		tail.previous = item;
 	}
 	
 	public void put(int key, int value) {
 		
 		// 若数据已经存在, 则更新结果
-		Item query = map.get(key);
+		LinkedItem query = map.get(key);
 		if (query != null) {
-			Item item = new Item(key, value);
+			LinkedItem item = new LinkedItem(key, value);
 			map.put(key, item);
-			list.remove((Integer) key);
-			list.add(key);
+			query.remove();
+			tailAdd(item);
 			return;
 		}
 		
 		// 若数据不存在
-		Item item = new Item(key, value);
-		if (list.size() < capacity) {
-			list.add(key);
+		LinkedItem item = new LinkedItem(key, value);
+		if (map.size() < capacity) {
+			tailAdd(item);
 			map.put(key, item);
 		} else {
-			Integer first = list.removeFirst();
+			Integer first = head.next.getKey();
 			map.remove(first);
+			removeHead();
 			
-			list.add(key);
+			tailAdd(item);
 			map.put(key, item);
 		}
+	}
+	
+	private void removeHead() {
+		head.next          = head.next.next;
+		head.next.previous = head;
 	}
 	
 	
@@ -81,6 +102,7 @@ public class LRUCache {
 		lru2.put(1, 1);
 		System.out.println(lru2.get(2));
 		lru2.put(4, 1);
+		lru2.put(3, 3);
 		System.out.println(lru2.get(1));
 		System.out.println(lru2.get(2));
 		
@@ -89,25 +111,33 @@ public class LRUCache {
 	}
 }
 
-class Item {
+class LinkedItem {
 	
-	private int key;
-	private int value;
+	private int        key;
+	private int        value;
+	public  LinkedItem previous;
+	public  LinkedItem next;
 	
-	public Item() {
+	public LinkedItem() {
+		previous = null;
+		next     = null;
 	}
 	
-	public Item(int key, int value) {
+	public LinkedItem(int key, int value) {
 		this.key   = key;
 		this.value = value;
 	}
 	
+	public void remove() {
+		this.previous.next = this.next;
+		this.next.previous = this.previous;
+	}
 	
 	public int getKey() {
 		return key;
 	}
 	
-	public Item setKey(int key) {
+	public LinkedItem setKey(int key) {
 		this.key = key;
 		return this;
 	}
@@ -116,7 +146,7 @@ class Item {
 		return value;
 	}
 	
-	public Item setValue(int value) {
+	public LinkedItem setValue(int value) {
 		this.value = value;
 		return this;
 	}
