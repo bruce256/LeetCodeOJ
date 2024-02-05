@@ -1,10 +1,14 @@
 package march;
 
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
+ * https://leetcode.com/problems/lru-cache/description/
+ * <p>
  * project  : LeetCodeOJ
  * package  : march
  * author   : lvsheng
@@ -12,63 +16,71 @@ import java.util.TreeMap;
  */
 public class LRUCache {
 	
-	LinkedList<Item> list = new LinkedList<>();
-	int              capacity;
+	// 队首是最久没有使用的
+	LinkedList<Integer> list;
+	// 用于检查是否存在及 O(1) 获取元素
+	Map<Integer, Item>  map;
+	
+	int capacity;
 	
 	public LRUCache(int capacity) {
+		list = new LinkedList<>();
+		map  = new HashMap<>(capacity);
+		
 		this.capacity = capacity;
 	}
 	
 	public int get(int key) {
-		if (list.size() == 0) return -1;
-		int i = 0;
-		for (; i < list.size(); i++) {
-			if (list.get(i).getKey() == key) break;
+		Item item = map.get(key);
+		if (item == null) {
+			return -1;
 		}
-		if (i < list.size()) {
-			Item item = list.get(i);
-			list.remove(i);
-			list.add(item);
-			return item.getValue();
-		}
-		return -1;
+		
+		list.remove((Integer) key);
+		list.add(key);
+		
+		return item.getValue();
 	}
 	
-	public void set(int key, int value) {
-		int i = 0;
-		for (; i < list.size(); i++) {
-			if (list.get(i).getKey() == key) break;
-		}
-		if (i < list.size()) {
-			list.remove(i);
-			list.add(new Item(key, value));
+	public void put(int key, int value) {
+		
+		// 若数据已经存在, 则更新结果
+		Item query = map.get(key);
+		if (query != null) {
+			Item item = new Item(key, value);
+			map.put(key, item);
+			list.remove((Integer) key);
+			list.add(key);
 			return;
 		}
 		
+		// 若数据不存在
+		Item item = new Item(key, value);
 		if (list.size() < capacity) {
-			list.add(new Item(key, value));
+			list.add(key);
+			map.put(key, item);
 		} else {
-			list.removeFirst();
-			list.add(new Item(key, value));
+			Integer first = list.removeFirst();
+			map.remove(first);
+			
+			list.add(key);
+			map.put(key, item);
 		}
 	}
 	
-	public LinkedList<Item> getList() {
-		return list;
-	}
 	
 	public static void main(String[] args) {
 		int[]    arr = {4, 3, 4, 2, 3, 1, 4, 2};
 		LRUCache lru = new LRUCache(3);
 		for (int i : arr) {
-			lru.set(i, i);
+			lru.put(i, i);
 //			System.out.println(JSONArray.toJSONString(lru.getList()));
 		}
 		LRUCache lru2 = new LRUCache(2);
-		lru2.set(2, 1);
-		lru2.set(1, 1);
+		lru2.put(2, 1);
+		lru2.put(1, 1);
 		System.out.println(lru2.get(2));
-		lru2.set(4, 1);
+		lru2.put(4, 1);
 		System.out.println(lru2.get(1));
 		System.out.println(lru2.get(2));
 		
@@ -86,7 +98,7 @@ class Item {
 	}
 	
 	public Item(int key, int value) {
-		this.key = key;
+		this.key   = key;
 		this.value = value;
 	}
 	
