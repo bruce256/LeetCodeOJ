@@ -1,4 +1,5 @@
-package add.binary;
+package linkedlist;
+
 
 /**
  * @author lvsheng
@@ -12,7 +13,7 @@ public class RemoveNthNodeFromEndofList {
 		if(n == 0) return head;
 		
 		ListNode p1 = head, p2 = head;
-		ListNode h = new ListNode(0);
+		ListNode h  = new ListNode(0);
 		h.next = head;	//仅作为标志作用的头指针
 		ListNode pre = h;
 		

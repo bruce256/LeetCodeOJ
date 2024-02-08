@@ -1,4 +1,5 @@
-package add.binary;
+package linkedlist;
+
 
 /**
  * @author lvsheng
@@ -12,7 +13,7 @@ public class RemoveLinkedListElements {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ListNode h = new ListNode(1);
+		ListNode h  = new ListNode(1);
 		ListNode h1 = new ListNode(1);
 		h.next = h1;
 		System.out.print(removeElements(h, 1));
