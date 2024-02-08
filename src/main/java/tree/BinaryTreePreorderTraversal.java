@@ -1,4 +1,5 @@
-package add.binary;
+package tree;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +15,9 @@ import java.util.Stack;
 public class BinaryTreePreorderTraversal {
 	
 	public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer>              list  = new ArrayList<Integer>();
         Stack<TreeNode> stack = new Stack<TreeNode>();
-        TreeNode cur = root;
+        TreeNode        cur   = root;
         while (cur != null || !stack.isEmpty()) {
 			while (cur != null) {
 				list.add(cur.val);

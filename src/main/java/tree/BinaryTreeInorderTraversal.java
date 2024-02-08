@@ -1,4 +1,5 @@
-package add.binary;
+package tree;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class BinaryTreeInorderTraversal {
 		if (root == null)
 			return;
 		Stack<TreeNode> stack = new Stack<TreeNode>();
-		TreeNode cur = root;
+		TreeNode        cur   = root;
 
 		while (!stack.isEmpty() || cur != null) {
 			if (cur != null) {

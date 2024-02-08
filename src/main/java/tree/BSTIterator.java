@@ -1,4 +1,4 @@
-package add.binary;
+package tree;
 
 import java.util.Stack;
 
@@ -10,7 +10,7 @@ import java.util.Stack;
  */
 public class BSTIterator {
 
-	Stack<TreeNode>	stack	= new Stack<TreeNode>();
+	Stack<TreeNode> stack = new Stack<TreeNode>();
 
 	public static void main(String[] args) {
 		TreeNode n1 = new TreeNode(2);

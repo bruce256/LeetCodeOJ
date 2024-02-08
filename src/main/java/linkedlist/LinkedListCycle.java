@@ -1,4 +1,5 @@
-package add.binary;
+package linkedlist;
+
 
 /**
  * @author lvsheng
