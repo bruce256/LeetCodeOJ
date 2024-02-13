@@ -48,6 +48,7 @@ public class IsSymmetric {
 	}
 	
 	public static void main(String[] args) {
+		Integer i = 10;
 		IsSymmetric test = new IsSymmetric();
 		test.isSymmetric(new TreeNode(3));
 	}
