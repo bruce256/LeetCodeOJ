@@ -10,6 +10,7 @@ public class MyPow {
 		return n >= 0 ? pow(x, n) : 1.0 / pow(x, -n);
 	}
 	
+	// 如果n是int的最小负数，那么-n依然是它自己
 	private double pow(double x, long n) {
 		if (n == 0) return 1;
 		double y = pow(x, n / 2);
