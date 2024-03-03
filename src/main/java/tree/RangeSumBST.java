@@ -1,4 +1,4 @@
-package march;
+package tree;
 
 
 /**
@@ -28,45 +28,5 @@ public class RangeSumBST {
 		} else if (root.val > R) {
 			dfs(root.left, L, R);
 		}
-	}
-}
-
-class TreeNode {
-	
-	int      val;
-	TreeNode left;
-	TreeNode right;
-	
-	TreeNode(int x) {
-		val = x;
-	}
-	
-	Integer in;
-	
-	public int getVal() {
-		return val;
-	}
-	
-	public TreeNode setVal(int val) {
-		this.val = val;
-		return this;
-	}
-	
-	public TreeNode getLeft() {
-		return left;
-	}
-	
-	public TreeNode setLeft(TreeNode left) {
-		this.left = left;
-		return this;
-	}
-	
-	public TreeNode getRight() {
-		return right;
-	}
-	
-	public TreeNode setRight(TreeNode right) {
-		this.right = right;
-		return this;
 	}
 }
