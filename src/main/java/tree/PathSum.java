@@ -1,4 +1,5 @@
-package add.binary;
+package tree;
+
 
 
 /**
@@ -14,7 +15,7 @@ public class PathSum {
 	 */
 	public static void main(String[] args) {
 		TreeNode treeNode = new TreeNode(1);
-		TreeNode t1 = new TreeNode(2);
+		TreeNode t1       = new TreeNode(2);
 		System.out.println(hasPathSum(treeNode, 1));
 		System.out.println(hasPathSum(null, 0));
 		treeNode.left = t1;

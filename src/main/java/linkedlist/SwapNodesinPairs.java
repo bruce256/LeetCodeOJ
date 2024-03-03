@@ -1,4 +1,5 @@
-package add.binary;
+package linkedlist;
+
 
 /**
  * @author lvsheng
@@ -12,7 +13,7 @@ public class SwapNodesinPairs {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ListNode h = new ListNode(1);
+		ListNode h  = new ListNode(1);
 		ListNode h2 = new ListNode(2);
 		ListNode h3 = new ListNode(3);
 		ListNode h4 = new ListNode(4);

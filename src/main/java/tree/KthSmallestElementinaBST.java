@@ -1,4 +1,4 @@
-package add.binary;
+package tree;
 
 /**
  * @author lvsheng
@@ -21,17 +21,5 @@ public class KthSmallestElementinaBST {
 		if(root.left != null)  travel(root.left, k);;
 		if(++idx == k) r = root.val;
 		if(root.right != null) travel(root.right, k);
-	}
-}
-
-// Definition for a binary tree node.
-class TreeNode {
-
-	int			val;
-	TreeNode	left;
-	TreeNode	right;
-
-	TreeNode(int x) {
-		val = x;
 	}
 }

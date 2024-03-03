@@ -1,4 +1,5 @@
-package add.binary;
+package tree;
+
 
 /**
  * @auther lvsheng
@@ -9,9 +10,9 @@ package add.binary;
  */
 public class LowestCommonAncestorofaBinaryTree {
 
-	static boolean		a	= false;
-	static boolean	b = false;
-	static TreeNode	ancestor;
+	static boolean             a	= false;
+	static boolean             b = false;
+	static TreeNode ancestor;
 
 	/**
 	 * @param args
