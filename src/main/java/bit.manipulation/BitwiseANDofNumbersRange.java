@@ -1,4 +1,4 @@
-package march;
+package bit.manipulation;
 
 /**
  * Created by Administrator on 2016/6/21.

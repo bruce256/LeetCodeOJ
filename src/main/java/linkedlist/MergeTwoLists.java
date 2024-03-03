@@ -1,4 +1,5 @@
-package march;
+package linkedlist;
+
 
 /**
  * @author LvSheng
