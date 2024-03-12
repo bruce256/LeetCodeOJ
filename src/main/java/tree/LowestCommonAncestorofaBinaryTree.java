@@ -1,54 +1,70 @@
 package tree;
 
 
+import apple.laf.JRSUIUtils;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * @auther lvsheng
  * @date 2016年2月24日
  * @time 下午5:25:15
  * @project LeetCodeOJ
- * 
  */
 public class LowestCommonAncestorofaBinaryTree {
-
-	static boolean             a	= false;
-	static boolean             b = false;
+	
+	static boolean  a = false;
+	static boolean  b = false;
 	static TreeNode ancestor;
-
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		TreeNode n1 = new TreeNode(1);
-		TreeNode n2 = new TreeNode(2);
-		TreeNode n3 = new TreeNode(3);
-		TreeNode n4 = new TreeNode(4);
-		n1.left = n2;
-		n2.left = n3;
-		n2.right = n4;
-
-		System.out.print(lowestCommonAncestor(n1, n3, n4).val);
+		TreeNode                          n1   = new TreeNode(3, new TreeNode(5, new TreeNode(6), new TreeNode(2, new TreeNode(7), new TreeNode(4))), new TreeNode(1, new TreeNode(0), new TreeNode(8)));
+		LowestCommonAncestorofaBinaryTree test = new LowestCommonAncestorofaBinaryTree();
+		test.lowestCommonAncestor(n1, n1, n1.left);
+		test.lowestCommonAncestor(n1, n1.left, n1.right);
 	}
-
-	public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-		a = false;
-		b = false;
-		ancestor = null;
-		dfs(root, p, q);
-		return ancestor;
+	
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		Map<TreeNode, TreeNode> parentMap = new HashMap<>();
+		dfs(root, parentMap);
+		parentMap.put(root, null);
+		
+		Set<TreeNode> set    = new HashSet<>();
+		TreeNode      parent = null;
+		while (p != null) {
+			set.add(p);
+			
+			parent = parentMap.get(p);
+			p      = parent;
+		}
+		
+		while (!set.contains(q)) {
+			parent = parentMap.get(q);
+			q      = parent;
+		}
+		
+		return q;
 	}
-
-	private static void dfs(TreeNode root, TreeNode p, TreeNode q) {
-		if (root == null || ancestor != null)
+	
+	private void dfs(TreeNode root, Map<TreeNode, TreeNode> parentMap) {
+		if (root == null) {
 			return;
-		dfs(root.left, p, q);
-		dfs(root.right, p, q);
-
-		if (root == p)
-			a = true;
-		else if (root == q)
-			b = true;
-
-		if (a && b)
-			ancestor = root;
+		}
+		
+		if (root.left != null) {
+			parentMap.put(root.left, root);
+			dfs(root.left, parentMap);
+		}
+		
+		if (root.right != null) {
+			parentMap.put(root.right, root);
+			dfs(root.right, parentMap);
+		}
 	}
 }

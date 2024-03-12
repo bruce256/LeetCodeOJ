@@ -1,6 +1,4 @@
-package march;
-
-import java.util.List;
+package linkedlist;
 
 /**
  * @author LvSheng
@@ -16,7 +14,7 @@ public class ReverseList {
 		head.next = null;
 		while (p2 != null) {
 			p1.next = head;
-			head = p1;
+			head    = p1;
 			
 			p1 = p2;
 			p2 = p2.next;
@@ -24,6 +22,19 @@ public class ReverseList {
 		
 		p1.next = head;
 		return p1;
+	}
+	
+	
+	public ListNode reverseList2(ListNode head) {
+		ListNode pre = null;
+		ListNode cur = head;
+		while (cur != null) {
+			ListNode next = cur.next;
+			cur.next = pre;
+			pre = cur;
+			cur = next;
+		}
+		return pre;
 	}
 	
 	public static void main(String[] args) {
@@ -38,6 +49,6 @@ public class ReverseList {
 		l4.next = l5;
 		
 		ReverseList reverseList = new ReverseList();
-		reverseList.reverseList(l1);
+		reverseList.reverseList2(l1);
 	}
 }
