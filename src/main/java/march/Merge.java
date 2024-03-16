@@ -3,11 +3,21 @@ package march;
 import java.util.Arrays;
 
 /**
+ * https://leetcode.cn/problems/merge-sorted-array/
+ *
  * @author LvSheng
  * @date 2020/1/28
  **/
 public class Merge {
 	
+	/**
+	 * 逆向双指针
+	 *
+	 * @param nums1
+	 * @param m
+	 * @param nums2
+	 * @param n
+	 */
 	public void merge(int[] nums1, int m, int[] nums2, int n) {
 		int pos = m + n - 1;
 		m--;
