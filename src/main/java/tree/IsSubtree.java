@@ -27,4 +27,21 @@ public class IsSubtree {
 		return dfsCompare(root.left, subRoot.left) && dfsCompare(root.right, subRoot.right);
 	}
 	
+	public boolean isSubtree1(TreeNode root, TreeNode subRoot) {
+		StringBuilder s1 = new StringBuilder();
+		StringBuilder s2 = new StringBuilder();
+		dfsString(root, s1);
+		dfsString(subRoot, s2);
+		return s1.toString().contains(s2.toString());
+	}
+	
+	public void dfsString(TreeNode root, StringBuilder sb) {
+		if (root == null) {
+			return;
+		}
+		sb.append(root.val + "");
+		
+		dfsString(root.left, sb);
+		dfsString(root.right, sb);
+	}
 }
