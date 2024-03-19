@@ -1,6 +1,8 @@
 package add.binary;
 
 /**
+ * https://leetcode.cn/problems/compare-version-numbers/description/
+ *
  * @author lvsheng
  *         project LeetCodeOJ
  *         date 2016年2月17日
