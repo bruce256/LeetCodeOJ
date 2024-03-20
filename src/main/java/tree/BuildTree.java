@@ -14,9 +14,6 @@ public class BuildTree {
 		if (preorder.length == 0) {
 			return null;
 		}
-		if (preorder.length == 1) {
-			return new TreeNode(preorder[0]);
-		}
 		
 		TreeNode root   = new TreeNode(preorder[0]);
 		int      length = 0;
