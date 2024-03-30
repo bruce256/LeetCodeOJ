@@ -35,10 +35,11 @@ public class Subsets {
 			ll.add((List<Integer>) l.clone());
 			return;
 		}
+		dfs(nums, l, i + 1, ll);
+		
 		l.add(nums[i]);
 		dfs(nums, l, i + 1, ll);
 		l.remove(l.size() - 1);
-		dfs(nums, l, i + 1, ll);
 	}
 	
 	// 掩码的方法求解
