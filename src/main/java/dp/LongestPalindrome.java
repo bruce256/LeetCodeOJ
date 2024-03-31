@@ -45,4 +45,9 @@ public class LongestPalindrome {
 		
 		return s.substring(left, left + maxLen);
 	}
+	
+	public String longestPalindrome1(String s) {
+		int left;
+		return null;
+	}
 }
