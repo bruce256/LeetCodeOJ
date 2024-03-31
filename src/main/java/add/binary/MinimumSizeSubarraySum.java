@@ -2,6 +2,8 @@ package add.binary;
 
 
 /**
+ * https://leetcode.cn/problems/minimum-size-subarray-sum/description/
+ *
  * @author lvsheng
  *         project LeetCodeOJ
  *         date 2016年2月25日
