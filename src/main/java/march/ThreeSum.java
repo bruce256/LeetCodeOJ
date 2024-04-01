@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.TreeSet;
 
 /**
+ * https://leetcode.cn/problems/3sum/description/
+ *
  * @author LvSheng
  * @date 2020/1/25
  **/
@@ -44,6 +46,39 @@ public class ThreeSum {
 			}
 		}
 		return new ArrayList<>(result);
+	}
+	
+	public List<List<Integer>> threeSum1(int[] nums) {
+		List<List<Integer>> result = new ArrayList<>();
+		Arrays.sort(nums);
+		
+		HashMap<Integer, Integer> map = new HashMap<>(nums.length * 2);
+		for (int i = 0; i < nums.length; i++) {
+			map.put(nums[i], i);
+		}
+		
+		for (int i = 0; i < nums.length; i++) {
+			if (i != 0 && nums[i] == nums[i - 1]) {
+				continue;
+			}
+			
+			for (int j = i + 1; j < nums.length; j++) {
+				if (j != (i + 1) && nums[j] == nums[j - 1]) {
+					continue;
+				}
+				
+				int     sum = nums[i] + nums[j];
+				Integer idx = map.get(-sum);
+				if (idx != null && idx > j) {
+					List<Integer> list = new ArrayList<>();
+					list.add(nums[i]);
+					list.add(nums[j]);
+					list.add(-sum);
+					result.add(list);
+				}
+			}
+		}
+		return result;
 	}
 	
 	public static void main(String[] args) {
