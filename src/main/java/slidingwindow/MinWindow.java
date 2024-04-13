@@ -1,9 +1,11 @@
-package march;
+package slidingwindow;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * https://leetcode.cn/problems/minimum-window-substring/
+ *
  * @author LvSheng
  * @date 2020/1/29
  **/
