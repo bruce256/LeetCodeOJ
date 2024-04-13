@@ -1,7 +1,5 @@
 package bit.manipulation;
 
-import backtrack.NumSquares;
-
 /**
  * https://leetcode.com/problems/single-number/description/
  *

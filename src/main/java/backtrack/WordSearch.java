@@ -1,7 +1,5 @@
 package backtrack;
 
-import java.util.Arrays;
-
 /**
  * https://leetcode-cn.com/problems/word-search/
  *

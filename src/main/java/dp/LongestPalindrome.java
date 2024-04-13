@@ -1,7 +1,5 @@
 package dp;
 
-import javax.print.attribute.standard.ReferenceUriSchemesSupported;
-
 /**
  * https://leetcode.cn/problems/longest-palindromic-substring/description/
  *

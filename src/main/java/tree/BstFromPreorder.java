@@ -1,7 +1,5 @@
 package tree;
 
-import tree.TreeNode;
-
 /**
  * @author LvSheng
  * @date 2020/2/4

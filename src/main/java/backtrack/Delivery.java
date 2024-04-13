@@ -1,14 +1,9 @@
 package backtrack;
 
-import com.sun.jmx.remote.internal.ArrayQueue;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * @author LvSheng
