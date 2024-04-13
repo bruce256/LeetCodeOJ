@@ -1,6 +1,6 @@
-import java.util.BitSet;
+package slidingwindow;
+
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/
