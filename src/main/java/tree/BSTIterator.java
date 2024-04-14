@@ -3,46 +3,48 @@ package tree;
 import java.util.Stack;
 
 /**
+ * https://leetcode.cn/problems/binary-search-tree-iterator/description/
+ *
  * @author lvsheng
- *         project LeetCodeOJ
- *         date 2016年2月16日
- *         time 下午7:49:25
+ * project LeetCodeOJ
+ * date 2016年2月16日
+ * time 下午7:49:25
  */
 public class BSTIterator {
-
+	
+	TreeNode        cur   = null;
 	Stack<TreeNode> stack = new Stack<TreeNode>();
-
+	
 	public static void main(String[] args) {
 		TreeNode n1 = new TreeNode(2);
 		TreeNode n2 = new TreeNode(1);
 		n1.left = n2;
-
+		
 		BSTIterator i = new BSTIterator(n1);
 		while (i.hasNext())
 			System.out.println(i.next());
 	}
-
+	
 	public BSTIterator(TreeNode root) {
 		stack.clear();
-		if (root != null)
-			stack.push(root);
+		cur = root;
 	}
-
+	
 	public boolean hasNext() {
-		return !stack.isEmpty();
+		return !stack.isEmpty() || cur != null;
 	}
-
+	
 	public int next() {
-		TreeNode t = stack.pop();
-		while (t != null) {
-			stack.push(t);
-			t = t.left;
+		while (cur != null) {
+			stack.push(cur);
+			cur = cur.left;
 		}
-		t = stack.pop();
-		int v = t.val;
-		if (t.right != null)
-			stack.push(t.right);
+		TreeNode tmp = stack.pop();
+		int      v   = tmp.val;
+		if (tmp.right != null) {
+			cur = tmp.right;
+		}
 		return v;
 	}
-
+	
 }
