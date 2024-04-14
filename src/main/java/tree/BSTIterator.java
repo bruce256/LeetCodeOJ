@@ -12,9 +12,6 @@ import java.util.Stack;
  */
 public class BSTIterator {
 	
-	TreeNode        cur   = null;
-	Stack<TreeNode> stack = new Stack<TreeNode>();
-	
 	public static void main(String[] args) {
 		TreeNode n1 = new TreeNode(2);
 		TreeNode n2 = new TreeNode(1);
@@ -24,6 +21,9 @@ public class BSTIterator {
 		while (i.hasNext())
 			System.out.println(i.next());
 	}
+	
+	TreeNode        cur   = null;
+	Stack<TreeNode> stack = new Stack<TreeNode>();
 	
 	public BSTIterator(TreeNode root) {
 		stack.clear();
