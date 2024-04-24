@@ -1,5 +1,6 @@
 package divideAndConquer;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
@@ -11,6 +12,8 @@ import java.util.concurrent.RecursiveTask;
  * @date 2024/4/23
  **/
 public class SortArrayTask extends RecursiveTask<int[]> {
+	
+	public static final int THRESHOLD = 1024;
 	
 	int[] nums;
 	int   left;
@@ -26,8 +29,9 @@ public class SortArrayTask extends RecursiveTask<int[]> {
 	
 	@Override
 	protected int[] compute() {
-		if (left >= right) {
-			return nums;
+		if (right - left + 1 <= THRESHOLD) {
+			Arrays.sort(nums, left, right + 1);
+			return null;
 		}
 		
 		int middle = (left + right) / 2;
@@ -70,7 +74,7 @@ public class SortArrayTask extends RecursiveTask<int[]> {
 	}
 	
 	public static void main(String[] args) {
-		int    num    = 1000000;
+		int    num    = 100000000;
 		int[]  nums   = new int[num];
 		int[]  tmp    = new int[num];
 		Random random = new Random();
