@@ -74,14 +74,20 @@ public class SortArrayTask extends RecursiveTask<int[]> {
 	}
 	
 	public static void main(String[] args) {
-		int    num    = 100000000;
+		int[] array = {10000, 100000, 1000000, 10000000, 100000000};
+		for (int num : array) {
+			compare(num);
+		}
+	}
+	
+	private static void compare(int num) {
 		int[]  nums   = new int[num];
 		int[]  tmp    = new int[num];
 		Random random = new Random();
 		for (int i = 0; i < nums.length; i++) {
 			nums[i] = random.nextInt();
 		}
-		System.out.println(nums.length);
+		System.out.println(nums.length + " numbers \t" + Runtime.getRuntime().availableProcessors() + " cpus");
 		
 		ForkJoinPool  forkJoinPool = new ForkJoinPool();
 		SortArrayTask task         = new SortArrayTask(nums, tmp, 0, nums.length - 1);
@@ -91,8 +97,7 @@ public class SortArrayTask extends RecursiveTask<int[]> {
 			int[] r = result.get();
 			
 			long duration = System.currentTimeMillis() - start;
-			System.out.println("fork/join time cost: " + duration + " ms");
-			System.out.println(r);
+			System.out.println("fork/join time cost: \t" + duration + " ms");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
@@ -106,7 +111,6 @@ public class SortArrayTask extends RecursiveTask<int[]> {
 		start = System.currentTimeMillis();
 		int[] array    = test.sortArray(nums);
 		long  duration = System.currentTimeMillis() - start;
-		System.out.println("single thread time cost: " + duration + " ms");
-		System.out.println(array);
+		System.out.println("single thread time cost: \t" + duration + " ms");
 	}
 }
