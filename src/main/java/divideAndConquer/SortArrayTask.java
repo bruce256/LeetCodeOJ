@@ -54,13 +54,9 @@ public class SortArrayTask extends RecursiveTask<int[]> {
 		int k = 0;
 		while (i <= middle && j <= right) {
 			if (nums[i] < nums[j]) {
-				tmp[k] = nums[i];
-				k++;
-				i++;
+				tmp[k++] = nums[i++];
 			} else {
-				tmp[k] = nums[j];
-				j++;
-				k++;
+				tmp[k++] = nums[j++];
 			}
 		}
 		
