@@ -1,5 +1,7 @@
 package divideAndConquer;
 
+import java.util.Arrays;
+
 /**
  * https://leetcode.cn/problems/sort-an-array/description/
  *
@@ -52,8 +54,8 @@ public class SortArray {
 	public static void main(String[] args) {
 		SortArray test  = new SortArray();
 		int[]     array = test.sortArray(new int[]{5, 2, 3, 1});
-		System.out.println(array);
+		System.out.println(Arrays.toString(array));
 		array = test.sortArray(new int[]{5, 1, 1, 2, 0, 0});
-		System.out.println(array);
+		System.out.println(Arrays.toString(array));
 	}
 }
