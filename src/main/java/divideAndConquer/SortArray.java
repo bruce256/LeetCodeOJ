@@ -31,13 +31,9 @@ public class SortArray {
 		int k = 0;
 		while (i <= middle && j <= right) {
 			if (nums[i] < nums[j]) {
-				tmp[k] = nums[i];
-				k++;
-				i++;
+				tmp[k++] = nums[i++];
 			} else {
-				tmp[k] = nums[j];
-				j++;
-				k++;
+				tmp[k++] = nums[j++];
 			}
 		}
 		
@@ -55,7 +51,7 @@ public class SortArray {
 	
 	public static void main(String[] args) {
 		SortArray test  = new SortArray();
-		int[]     array = test.sortArray(new int[]{5,2,3,1});
+		int[]     array = test.sortArray(new int[]{5, 2, 3, 1});
 		System.out.println(array);
 		array = test.sortArray(new int[]{5, 1, 1, 2, 0, 0});
 		System.out.println(array);
