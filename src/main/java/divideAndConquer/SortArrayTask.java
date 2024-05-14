@@ -8,6 +8,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.RecursiveTask;
 
 /**
+ * fork join计算版本
+ *
  * @author LvSheng
  * @date 2024/4/23
  **/
@@ -36,6 +38,7 @@ public class SortArrayTask extends RecursiveTask<int[]> {
 		
 		int middle = (left + right) / 2;
 		
+		// 当前任务纳入计算队列
 		SortArrayTask leftSortArrayTask = new SortArrayTask(nums, tmp, left, middle);
 		leftSortArrayTask.fork();
 		
@@ -43,6 +46,7 @@ public class SortArrayTask extends RecursiveTask<int[]> {
 		SortArrayTask rightSortArrayTask = new SortArrayTask(nums, tmp, newLeft, right);
 		rightSortArrayTask.fork();
 		
+		// 等待任务计算结束，再做这个语句后的事情
 		leftSortArrayTask.join();
 		rightSortArrayTask.join();
 		
