@@ -112,5 +112,6 @@ public class SortArrayTask extends RecursiveTask<int[]> {
 		int[] array    = test.sortArray(nums);
 		long  duration = System.currentTimeMillis() - start;
 		System.out.println("single thread time cost: \t" + duration + " ms");
+		System.out.println();
 	}
 }
