@@ -13,20 +13,20 @@ public class CheckInclusion {
 		int len2 = s2.length();
 		if (len1 > len2) return false;
 		
-		int[] count1 = new int[26];
-		int[] count2 = new int[26];
+		int[] window1 = new int[26];
+		int[] window2 = new int[26];
 		
 		for (int i = 0; i < len1; i++) {
-			count1[s1.charAt(i) - 'a']++;
-			count2[s2.charAt(i) - 'a']++;
+			window1[s1.charAt(i) - 'a']++;
+			window2[s2.charAt(i) - 'a']++;
 		}
 		
-		if (Arrays.equals(count1, count2)) return true;
+		if (Arrays.equals(window1, window2)) return true;
 		
 		for (int i = len1; i < len2; i++) {
-			count2[s2.charAt(i) - 'a']++;
-			count2[s2.charAt(i - len1) - 'a']--;
-			if (Arrays.equals(count1, count2)) return true;
+			window2[s2.charAt(i) - 'a']++;
+			window2[s2.charAt(i - len1) - 'a']--;
+			if (Arrays.equals(window1, window2)) return true;
 		}
 		return false;
 	}
