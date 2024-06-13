@@ -1,4 +1,4 @@
-package add.binary;
+package bit.manipulation;
 
 /**
  * @author lvsheng
