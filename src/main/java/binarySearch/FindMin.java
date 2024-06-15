@@ -8,7 +8,13 @@ package binarySearch;
  */
 public class FindMin {
 	
-	public int findMin(int[] nums) {
+	/**
+	 * 根最左侧做对比
+	 *
+	 * @param nums
+	 * @return
+	 */
+	public int findMin1(int[] nums) {
 		int left  = 0;
 		int right = nums.length - 1;
 		while (left < right) {
@@ -20,6 +26,28 @@ public class FindMin {
 				left = mid + 1;
 			} else {
 				right = mid;
+			}
+		}
+		
+		return nums[left];
+	}
+	
+	/**
+	 * 根最右侧数据做对比
+	 *
+	 * @param nums
+	 * @return
+	 */
+	public int findMin(int[] nums) {
+		int left  = 0;
+		int right = nums.length - 1;
+		while (left < right) {
+			int mid = (left + right) / 2;
+			
+			if (nums[mid] < nums[right]) {
+				right = mid;
+			} else {
+				left = mid + 1;
 			}
 		}
 		
