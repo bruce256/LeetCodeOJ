@@ -1,19 +1,21 @@
-package march;
+package backtrack;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * https://leetcode.com/problems/generate-parentheses/description/
+ *
  * 回溯法求解
  *
  * @author lvsheng
  * @date 2019-03-22
  **/
-public class GenerateParentheses {
+public class GenerateParentheses1 {
 	
 	public static void main(String[] args) {
-		GenerateParentheses gp   = new GenerateParentheses();
-		List<String>        list = gp.generateParenthesis(3);
+		GenerateParentheses1 gp   = new GenerateParentheses1();
+		List<String>         list = gp.generateParenthesis(3);
 		System.out.println(list);
 	}
 	
