@@ -9,7 +9,7 @@ package easy;
  */
 public class AddStrings {
 	
-	public String addStrings(String num1, String num2) {
+	public String addStrings1(String num1, String num2) {
 		int i = num1.length() - 1;
 		int j = num2.length() - 1;
 		
@@ -31,7 +31,7 @@ public class AddStrings {
 				jin = (x + jin) / 10;
 				i--;
 			}
-			if(jin > 0) sb.append(jin);
+			if (jin > 0) sb.append(jin);
 		} else {
 			while (j >= 0) {
 				int x = num2.charAt(j) - '0';
@@ -39,8 +39,27 @@ public class AddStrings {
 				jin = (x + jin) / 10;
 				j--;
 			}
-			if(jin > 0) sb.append(jin);
+			if (jin > 0) sb.append(jin);
 		}
+		return sb.reverse().toString();
+	}
+	
+	
+	public String addStrings(String num1, String num2) {
+		int i = num1.length() - 1;
+		int j = num2.length() - 1;
+		
+		StringBuilder sb  = new StringBuilder();
+		int           jin = 0;
+		while (i >= 0 || j >= 0 || jin > 0) {
+			int x = i >= 0 ? num1.charAt(i) - '0' : 0;
+			int y = j >= 0 ? num2.charAt(j) - '0' : 0;
+			sb.append((x + y + jin) % 10);
+			jin = (x + y + jin) / 10;
+			i--;
+			j--;
+		}
+		
 		return sb.reverse().toString();
 	}
 	
