@@ -11,7 +11,7 @@ import java.util.Queue;
 public class CanFinish2 {
 	public boolean canFinish(int numCourses, int[][] prerequisites) {
 		Edge[]    edges   = new Edge[numCourses];
-		int[]     indgree = new int[numCourses];
+		int[]     indegree = new int[numCourses];
 		boolean[] visited = new boolean[numCourses];
 		for (int i = 0; i < numCourses; i++) edges[i] = new Edge(-1);
 		
@@ -22,11 +22,11 @@ public class CanFinish2 {
 			e.next = edges[edgeHead].next;
 			edges[edgeHead].next = e;
 			
-			indgree[edge[1]]++;
+			indegree[edge[1]]++;
 		}
 		Queue<Integer> q = new ArrayDeque<Integer>(numCourses);
 		for (int i = 0; i < numCourses; i++) {
-			if (indgree[i] == 0) q.add(i);
+			if (indegree[i] == 0) q.add(i);
 		}
 		if (q.isEmpty()) return false;
 		
@@ -35,7 +35,7 @@ public class CanFinish2 {
 			visited[ver] = true;
 			Edge head = edges[ver].next;
 			while (head != null) {
-				if (--indgree[head.num] == 0) q.add(head.num);
+				if (--indegree[head.num] == 0) q.add(head.num);
 				head = head.next;
 			}
 		}
