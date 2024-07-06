@@ -1,6 +1,9 @@
-package march;
+package graph;
 
 /**
+ * https://leetcode.cn/problems/number-of-provinces/description/
+ * 并查集求解
+ *
  * @author LvSheng
  * @date 2020/1/28
  **/
